@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace Emergency_Room_Simulator_PL
+namespace Emergency_Department_Simulator_PL
 {
     /// <summary>
     /// Interaction logic for App.xaml

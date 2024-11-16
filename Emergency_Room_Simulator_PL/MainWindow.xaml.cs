@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Emergency_Room_Simulator_PL
+namespace Emergency_Department_Simulator_PL
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
