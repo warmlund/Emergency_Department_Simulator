@@ -21,8 +21,6 @@
         <Setter Property="BorderBrush" Value="{DynamicResource BorderColor}"/>
         <Setter Property="WindowStyle" Value="ThreeDBorderWindow"/>
         <Setter Property="ResizeMode" Value="CanResize"/>
-        <Setter Property="Width" Value="1024"/>
-        <Setter Property="Height" Value="768"/>
     </Style>
     <!--#endregion-->
 
@@ -98,8 +96,8 @@
 
     <!--#region TextBox Styles -->
     <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
-        <Setter Property="Width" Value="140"/>
-        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="MinWidth" Value="140"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryBackgroundColor}"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Foreground" Value="{DynamicResource TextColor}"/>
         <Setter Property="AcceptsReturn" Value="False"/>
@@ -111,7 +109,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Border x:Name="TextBoxBorder" Background="Transparent" BorderBrush="{DynamicResource BorderColor}" BorderThickness="1">
+                    <Border x:Name="TextBoxBorder" Background="{DynamicResource SecondaryBackgroundColor}" BorderBrush="{DynamicResource BorderColor}" BorderThickness="1" CornerRadius="2">
                         <ScrollViewer x:Name="PART_ContentHost"/>
                     </Border>
                 </ControlTemplate>

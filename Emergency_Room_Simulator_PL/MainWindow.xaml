@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Emergency_Department_Simulator_PL"
-        mc:Ignorable="d" Style="{StaticResource WindowStyle}">
+        mc:Ignorable="d" Width="1024" Height="728" Style="{StaticResource WindowStyle}">
 
     <Window.Resources>
         <ResourceDictionary>
