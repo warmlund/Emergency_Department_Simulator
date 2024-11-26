@@ -9,13 +9,15 @@ namespace Emergency_Department_Simulator_BLL
         private List<Status> _statusList;
 
         public ObservableCollection<Patient> PatientStorage { get { return _patientStorage; } }
+        public List<Status> StatusList { get { return _statusList; } }
+
         public PatientManager()
         {
             _patientStorage = new ObservableCollection<Patient>();
             _statusList = new List<Status>();
         }
 
-        public bool AddPatient(string name, DateOnly date)
+        public async Task<bool> AddPatient(string name, DateOnly date)
         {
             if (IsPatientRegistered(name, date))
                 return false;
@@ -24,6 +26,7 @@ namespace Emergency_Department_Simulator_BLL
             {
                 string id = CreatePatientId();
                 _patientStorage.Add(new Patient { Name = name, DateOfBirth = date, PatientId = id, Status = StatusType.Registered });
+
                 return true;
             }
         }
