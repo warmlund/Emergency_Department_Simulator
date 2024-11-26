@@ -4,14 +4,13 @@ namespace Emergency_Department_Simulator_BLL
 {
     internal interface IPatientManager
     {
-        void AddPatient();
-        void UpdatePatient();
+        bool AddPatient(string name, DateOnly date);
+        void UpdatePatientStatus();
         void LoadPatients();
         void SavePatients();
-        void CreatePatientId();
         int GetRegisteredPatients();
         int GetDischargedPatients();
         int GetTreatedPatients();
-        List<Patient> GetPatients();
+        void UpdateStatusBoard();
     }
 }
