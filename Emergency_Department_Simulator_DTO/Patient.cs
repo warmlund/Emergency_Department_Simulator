@@ -2,7 +2,7 @@
 {
     public class Patient
     {
-        public int PatientId { get; set; }
+        public string PatientId { get; set; }
         public string Name { get; set; }
         public DateOnly DateOfBirth { get; set; }
 

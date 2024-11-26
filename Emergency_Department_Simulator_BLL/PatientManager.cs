@@ -9,20 +9,26 @@ namespace Emergency_Department_Simulator_BLL
         private List<Status> _statusList;
 
         public ObservableCollection<Patient> PatientStorage { get { return _patientStorage; } }
+        public List<Status> StatusList { get { return _statusList; } }
+
         public PatientManager()
         {
             _patientStorage = new ObservableCollection<Patient>();
             _statusList = new List<Status>();
         }
 
-        public void AddPatient()
+        public async Task<bool> AddPatient(string name, DateOnly date)
         {
-            throw new NotImplementedException();
-        }
+            if (IsPatientRegistered(name, date))
+                return false;
 
-        public void UpdatePatient()
-        {
-            throw new NotImplementedException();
+            else
+            {
+                string id = CreatePatientId();
+                _patientStorage.Add(new Patient { Name = name, DateOfBirth = date, PatientId = id, Status = StatusType.Registered });
+
+                return true;
+            }
         }
 
         public void LoadPatients()
@@ -35,14 +41,15 @@ namespace Emergency_Department_Simulator_BLL
             throw new NotImplementedException();
         }
 
-        public void CreatePatientId()
+        public string CreatePatientId()
         {
-            throw new NotImplementedException();
-        }
+            int id = 1;
+            List<int> ids = _patientStorage.Select(x => int.Parse(x.PatientId.Substring(2))).ToList();
 
-        public List<Patient> GetPatients()
-        {
-            throw new NotImplementedException();
+            while (ids.Contains(id))
+                id++;
+            
+            return "ER"+id.ToString();
         }
 
         public int GetRegisteredPatients() => _patientStorage.Where(p => p.Status == StatusType.Registered).Count();
@@ -50,5 +57,7 @@ namespace Emergency_Department_Simulator_BLL
         public int GetDischargedPatients() => _patientStorage.Where(p => p.Status == StatusType.Discharged).Count();
 
         public int GetTreatedPatients() => _patientStorage.Where(p => p.Status == StatusType.Treated).Count();
+        public bool IsPatientRegistered(string name, DateOnly date) => _patientStorage.Any(p => p.Name == name && p.DateOfBirth == date);
+
     }
 }
