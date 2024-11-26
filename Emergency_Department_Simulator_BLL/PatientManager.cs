@@ -31,15 +31,6 @@ namespace Emergency_Department_Simulator_BLL
             }
         }
 
-        public void UpdatePatientStatus()
-        {
-            throw new NotImplementedException();
-        }
-        public void UpdateStatusBoard()
-        {
-            throw new NotImplementedException();
-        }
-
         public void LoadPatients()
         {
             throw new NotImplementedException();
