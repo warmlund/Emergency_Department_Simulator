@@ -5,8 +5,8 @@ namespace Emergency_Department_Simulator_BLL
     internal interface IPatientManager
     {
         Task <bool> AddPatient(string name, DateOnly date);
-        void LoadPatients();
-        void SavePatients();
+        bool LoadPatients();
+        bool SavePatients();
         int GetRegisteredPatients();
         int GetDischargedPatients();
         int GetTreatedPatients();
