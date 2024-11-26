@@ -1,5 +1,6 @@
 ﻿using Emergency_Department_Simulator_BLL.EventHandlers;
 using Emergency_Department_Simulator_DTO;
+using Emergency_Department_Simulator_DAL;
 using System.Collections.ObjectModel;
 
 namespace Emergency_Department_Simulator_BLL
@@ -8,6 +9,7 @@ namespace Emergency_Department_Simulator_BLL
     {
         private ObservableCollection<Patient> _patientStorage;
         private List<string> _statusList;
+        private PatientData _patientData;
 
         public ObservableCollection<Patient> PatientStorage { get { return _patientStorage; } }
         public List<string> StatusList { get { return _statusList; } }
@@ -16,6 +18,7 @@ namespace Emergency_Department_Simulator_BLL
         {
             _patientStorage = new ObservableCollection<Patient>();
             _statusList = new List<string>();
+            _patientData = new PatientData();
         }
 
         public async Task<bool> AddPatient(string name, DateOnly date)
@@ -38,15 +41,16 @@ namespace Emergency_Department_Simulator_BLL
             }
         }
 
-        public void LoadPatients()
+        public bool LoadPatients()
         {
-            throw new NotImplementedException();
+            _patientStorage = _patientData.LoadPatients();
+
+            if(_patientStorage == null)
+                return false;
+            return true;
         }
 
-        public void SavePatients()
-        {
-            throw new NotImplementedException();
-        }
+        public bool SavePatients() => _patientData.SavePatients(_patientStorage);
 
         public string CreatePatientId()
         {
