@@ -1,4 +1,5 @@
-﻿using Emergency_Department_Simulator_DTO;
+﻿using Emergency_Department_Simulator_BLL.EventHandlers;
+using Emergency_Department_Simulator_DTO;
 using System.Collections.ObjectModel;
 
 namespace Emergency_Department_Simulator_BLL
@@ -6,15 +7,15 @@ namespace Emergency_Department_Simulator_BLL
     public class PatientManager : IPatientManager
     {
         private ObservableCollection<Patient> _patientStorage;
-        private List<Status> _statusList;
+        private List<string> _statusList;
 
         public ObservableCollection<Patient> PatientStorage { get { return _patientStorage; } }
-        public List<Status> StatusList { get { return _statusList; } }
+        public List<string> StatusList { get { return _statusList; } }
 
         public PatientManager()
         {
             _patientStorage = new ObservableCollection<Patient>();
-            _statusList = new List<Status>();
+            _statusList = new List<string>();
         }
 
         public async Task<bool> AddPatient(string name, DateOnly date)
@@ -25,7 +26,13 @@ namespace Emergency_Department_Simulator_BLL
             else
             {
                 string id = CreatePatientId();
-                _patientStorage.Add(new Patient { Name = name, DateOfBirth = date, PatientId = id, Status = StatusType.Registered });
+                Patient patient = new Patient { Name = name, DateOfBirth = date, PatientId = id, Status = StatusType.Registered };
+                _patientStorage.Add(patient);
+
+                EmergencySimulator emergencySimulator = new EmergencySimulator();
+                await emergencySimulator.SimulateEmergencyActivity(patient);
+                emergencySimulator.NurseUpdate += OnNurseUpdate;
+                emergencySimulator.DoctorUpdate += OnDoctorUpdate;
 
                 return true;
             }
@@ -59,5 +66,21 @@ namespace Emergency_Department_Simulator_BLL
         public int GetTreatedPatients() => _patientStorage.Where(p => p.Status == StatusType.Treated).Count();
         public bool IsPatientRegistered(string name, DateOnly date) => _patientStorage.Any(p => p.Name == name && p.DateOfBirth == date);
 
+        private void OnNurseUpdate(object sender, NurseUpdateEventArgs e)
+        {
+            _statusList.Add(e.Message);
+        }
+
+        private void OnDoctorUpdate(Object sender, DoctorUpdateEventArgs e)
+        {
+            StatusList.Add(e.Message);
+            CheckDischargedStatus();
+        }
+
+        private void CheckDischargedStatus()
+        {
+            if (_patientStorage.All(p => p.Status == StatusType.Discharged))
+                StatusList.Add("STATUS: All patients are discharged");
+        }
     }
 }
