@@ -6,6 +6,5 @@
         Diagnosed,
         Discharged,
         Registered,
-        Updated
     }
 }
