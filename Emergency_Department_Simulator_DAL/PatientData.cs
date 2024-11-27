@@ -20,12 +20,12 @@ namespace Emergency_Department_Simulator_DAL
                 }
                 else
                 {
-                    return null;
+                    return new ObservableCollection<Patient>();
                 }
             }
             catch
             {
-                return null;
+                return new ObservableCollection<Patient>();
             }
 
         }
