@@ -1,6 +1,6 @@
 ﻿using Emergency_Department_Simulator_BLL.EventHandlers;
-using Emergency_Department_Simulator_DTO;
 using Emergency_Department_Simulator_DAL;
+using Emergency_Department_Simulator_DTO;
 using System.Collections.ObjectModel;
 
 namespace Emergency_Department_Simulator_BLL
@@ -45,7 +45,7 @@ namespace Emergency_Department_Simulator_BLL
         {
             _patientStorage = _patientData.LoadPatients();
 
-            if(_patientStorage == null)
+            if (_patientStorage == null)
                 return false;
             return true;
         }
@@ -59,8 +59,8 @@ namespace Emergency_Department_Simulator_BLL
 
             while (ids.Contains(id))
                 id++;
-            
-            return "ER"+id.ToString();
+
+            return "ER" + id.ToString();
         }
 
         public int GetRegisteredPatients() => _patientStorage.Where(p => p.Status == StatusType.Registered).Count();

@@ -2,7 +2,7 @@
 
 namespace Emergency_Department_Simulator_PL.Commands
 {
-    class AsyncCommand : ICommand
+    public class AsyncCommand : ICommand
     {
         private readonly Func<Task> _execute; //variable representing the async command that is being executed
         private readonly Func<bool> _canExecute; //variable that represents the boolean which checks if you can execute the command or not

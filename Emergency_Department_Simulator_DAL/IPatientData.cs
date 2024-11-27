@@ -1,5 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using Emergency_Department_Simulator_DTO;
+﻿using Emergency_Department_Simulator_DTO;
+using System.Collections.ObjectModel;
 
 namespace Emergency_Department_Simulator_DAL
 {

@@ -18,7 +18,7 @@ namespace Emergency_Department_Simulator_BLL
         public async Task SimulateEmergencyActivity(Patient patient)
         {
             while (patient.Status != StatusType.Discharged)
-            {   
+            {
                 if (random.Next(0, 2) == 0)
                 {
                     await Task.Run(() => OnSimulateDoctorUpdate(patient));
@@ -26,16 +26,16 @@ namespace Emergency_Department_Simulator_BLL
 
                 else
                 {
-                   await Task.Run(() =>OnSimulateNurseUpdate(patient));
+                    await Task.Run(() => OnSimulateNurseUpdate(patient));
                 }
             }
         }
 
         private void OnSimulateNurseUpdate(Patient patient)
         {
-            Thread.Sleep(random.Next(1000,3000));
+            Thread.Sleep(random.Next(1000, 3000));
 
-            if(patient.Status != StatusType.Treated || patient.Status!=StatusType.Discharged)
+            if (patient.Status != StatusType.Treated || patient.Status != StatusType.Discharged)
                 NurseUpdate?.Invoke(patient, new NurseUpdateEventArgs(patient));
         }
 
@@ -43,7 +43,7 @@ namespace Emergency_Department_Simulator_BLL
         {
             Thread.Sleep(random.Next(1000, 3000));
 
-            if(patient.Status == StatusType.Registered)
+            if (patient.Status == StatusType.Registered)
             {
                 patient.Status = StatusType.Diagnosed;
                 DoctorUpdate?.Invoke(patient, new DoctorUpdateEventArgs(patient));
@@ -60,7 +60,7 @@ namespace Emergency_Department_Simulator_BLL
                 patient.Status = StatusType.Discharged;
                 DoctorUpdate?.Invoke(patient, new DoctorUpdateEventArgs(patient));
             }
-                
+
         }
     }
 }

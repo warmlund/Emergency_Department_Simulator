@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Emergency_Department_Simulator_DTO;
+﻿using Emergency_Department_Simulator_DTO;
 
 namespace Emergency_Department_Simulator_BLL.EventHandlers
 {
