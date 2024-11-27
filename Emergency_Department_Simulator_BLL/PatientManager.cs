@@ -43,7 +43,10 @@ namespace Emergency_Department_Simulator_BLL
 
         public bool LoadPatients()
         {
-            _patientStorage = _patientData.LoadPatients();
+            foreach (Patient patient in _patientData.LoadPatients())
+            {
+                _patientStorage.Add(patient);
+            }
 
             if (_patientStorage == null)
                 return false;
@@ -68,14 +71,19 @@ namespace Emergency_Department_Simulator_BLL
         public int GetDischargedPatients() => _patientStorage.Where(p => p.Status == StatusType.Discharged).Count();
 
         public int GetTreatedPatients() => _patientStorage.Where(p => p.Status == StatusType.Treated).Count();
-        public bool IsPatientRegistered(string name, DateTime date) => _patientStorage.Any(p => p.Name == name && p.DateOfBirth == date);
+        public bool IsPatientRegistered(string name, DateTime date)
+        {
+            if(_patientStorage.Count>0)
+                return _patientStorage.Any(p => p.Name == name && p.DateOfBirth == date);
+            return false;
+        }
 
         private void OnNurseUpdate(object sender, NurseUpdateEventArgs e)
         {
             _statusList.Add(e.Message);
         }
 
-        private void OnDoctorUpdate(Object sender, DoctorUpdateEventArgs e)
+        private void OnDoctorUpdate(object sender, DoctorUpdateEventArgs e)
         {
             StatusList.Add(e.Message);
             CheckDischargedStatus();

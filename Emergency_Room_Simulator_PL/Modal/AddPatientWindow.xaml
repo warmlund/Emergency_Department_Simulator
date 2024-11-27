@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Emergency_Department_Simulator_PL.Modal" 
+        xmlns:events="clr-namespace:Emergency_Department_Simulator_PL.Events"
         d:DataContext="{d:DesignInstance Type=local:AddPatientViewModel}"
         mc:Ignorable="d"
-        Height="300" Width="300" Background="{DynamicResource MainBackgroundColor}">
+        Height="300" Width="300" Background="{DynamicResource MainBackgroundColor}"
+        events:EventManager.EnableCloseModalEvents="True">
 
     <Window.Resources>
         <ResourceDictionary>

@@ -93,5 +93,14 @@ namespace Emergency_Department_Simulator_PL
             FilteredPatientList.Refresh();
         }
 
+        internal void LoadPatientData()
+        {
+            _patientManager.LoadPatients();
+        }
+
+        internal void SavePatientData()
+        {
+            _patientManager.SavePatients();
+        }
     }
 }
