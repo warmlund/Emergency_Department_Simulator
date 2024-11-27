@@ -56,8 +56,8 @@ namespace Emergency_Department_Simulator_PL
 
         private async Task AddNewPatient()
         {
-            AddPatientViewModel addPatientViewModel = new AddPatientViewModel(_patientManager);
-            AddPatientWindow addPatientWindow = new AddPatientWindow { DataContext = addPatientViewModel };
+            AddPatientViewModel addPatientViewModel = new(_patientManager);
+            AddPatientWindow addPatientWindow = new() { DataContext = addPatientViewModel };
 
             bool? result = addPatientWindow.ShowDialog();
 

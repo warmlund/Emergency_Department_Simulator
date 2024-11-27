@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Emergency_Department_Simulator_PL" 
         d:DataContext="{d:DesignInstance Type=local:ViewModel}"
-        mc:Ignorable="d" Width="1024" Height="728" Style="{StaticResource WindowStyle}">
+        mc:Ignorable="d" Width="1024" Height="728" Style="{DynamicResource WindowStyle}">
 
     <Window.Resources>
         <ResourceDictionary>

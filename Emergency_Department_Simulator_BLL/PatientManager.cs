@@ -21,7 +21,7 @@ namespace Emergency_Department_Simulator_BLL
             _patientData = new PatientData();
         }
 
-        public async Task<bool> AddPatient(string name, DateOnly date)
+        public async Task<bool> AddPatient(string name, DateTime date)
         {
             if (IsPatientRegistered(name, date))
                 return false;
@@ -68,7 +68,7 @@ namespace Emergency_Department_Simulator_BLL
         public int GetDischargedPatients() => _patientStorage.Where(p => p.Status == StatusType.Discharged).Count();
 
         public int GetTreatedPatients() => _patientStorage.Where(p => p.Status == StatusType.Treated).Count();
-        public bool IsPatientRegistered(string name, DateOnly date) => _patientStorage.Any(p => p.Name == name && p.DateOfBirth == date);
+        public bool IsPatientRegistered(string name, DateTime date) => _patientStorage.Any(p => p.Name == name && p.DateOfBirth == date);
 
         private void OnNurseUpdate(object sender, NurseUpdateEventArgs e)
         {

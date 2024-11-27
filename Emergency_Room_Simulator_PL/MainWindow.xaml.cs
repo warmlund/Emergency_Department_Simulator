@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Emergency_Department_Simulator_BLL;
+using System.Windows;
 
 namespace Emergency_Department_Simulator_PL
 {
@@ -9,6 +10,9 @@ namespace Emergency_Department_Simulator_PL
     {
         public MainWindow()
         {
+            PatientManager patientManager = new PatientManager();
+            ViewModel viewModel= new ViewModel(patientManager);
+            this.DataContext = viewModel;
             InitializeComponent();
         }
     }

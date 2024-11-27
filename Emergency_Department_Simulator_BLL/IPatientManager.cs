@@ -2,7 +2,7 @@
 {
     internal interface IPatientManager
     {
-        Task<bool> AddPatient(string name, DateOnly date);
+        Task<bool> AddPatient(string name, DateTime date);
         bool LoadPatients();
         bool SavePatients();
         int GetRegisteredPatients();

@@ -6,12 +6,12 @@ namespace Emergency_Department_Simulator_PL.Modal
     public class AddPatientViewModel : NotifyPropertyChanged
     {
         private string _patientName;
-        private DateOnly _patientDateOfBirth;
+        private DateTime _patientDateOfBirth;
         private bool _dialogResult;
         private PatientManager _patientManager;
 
         public string PatientName { get { return _patientName; } set { if (_patientName != value) { _patientName = value; OnPropertyChanged(nameof(PatientName)); AddPatient.RaiseCanExecuteChanged(); } } }
-        public DateOnly PatientDateOfBirth { get { return _patientDateOfBirth; } set { if (_patientDateOfBirth != value) { _patientDateOfBirth = value; OnPropertyChanged(nameof(PatientDateOfBirth)); } } }
+        public DateTime PatientDateOfBirth { get { return _patientDateOfBirth; } set { if (_patientDateOfBirth != value) { _patientDateOfBirth = value; OnPropertyChanged(nameof(PatientDateOfBirth)); } } }
         public bool DialogResult { get { return _dialogResult; } set { if (_dialogResult != value) { _dialogResult = value; OnPropertyChanged(nameof(DialogResult)); } } }
         public Action Close { get; set; }
 
@@ -20,9 +20,11 @@ namespace Emergency_Department_Simulator_PL.Modal
 
         public AddPatientViewModel(PatientManager patientManager)
         {
-            _patientManager = patientManager;
+            _patientManager = patientManager ?? throw new ArgumentNullException(nameof(patientManager));
             AddPatient = new Command(AddNewPatient, CanAddPatient);
             CancelAddPatient = new Command(CancelNewPatient, CanCancelAddPatient);
+            PatientName = string.Empty;
+            PatientDateOfBirth = DateTime.Today;
         }
 
         private bool CanAddPatient()
