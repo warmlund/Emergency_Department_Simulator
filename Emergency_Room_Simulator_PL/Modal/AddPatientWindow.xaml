@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Emergency_Department_Simulator_PL.Modal"
+        xmlns:local="clr-namespace:Emergency_Department_Simulator_PL.Modal" 
+        d:DataContext="{d:DesignInstance Type=local:AddPatientViewModel}"
         mc:Ignorable="d"
-        Title="AddPatientWindow" Height="300" Width="300" Background="{StaticResource MainBackgroundColor}">
+        Height="300" Width="300" Background="{DynamicResource MainBackgroundColor}">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -34,18 +35,18 @@
         
         <TextBlock Text="Name" Style="{StaticResource StatusTextBlockStyle}" Grid.Row="1" HorizontalAlignment="Left" FontWeight="Normal"/>
 
-        <TextBox Style="{StaticResource TextBoxStyle}" Grid.Row="2" MaxLength="25" Name="TitleLimitedInput" Text="{Binding Title, Mode=TwoWay}" ScrollViewer.VerticalScrollBarVisibility="Disabled" TextWrapping="NoWrap" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+        <TextBox Style="{StaticResource TextBoxStyle}" Grid.Row="2" MaxLength="25" Name="NameLimitedInput" Text="{Binding PatientName, Mode=TwoWay}" ScrollViewer.VerticalScrollBarVisibility="Disabled" TextWrapping="NoWrap" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
         
         <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right">
-            <Label Content="{Binding ElementName=TitleLimitedInput, Path=Text.Length}" ContentStringFormat="{}{0} /25}" FontSize="8" Foreground="{StaticResource BorderColor}" />
+            <Label Content="{Binding ElementName=NameLimitedInput, Path=Text.Length}" ContentStringFormat="{}{0} /25}" FontSize="8" Foreground="{StaticResource BorderColor}" />
             <Label Content="/ 25" FontSize="8" Foreground="{StaticResource BorderColor}"/>
         </StackPanel>
 
         <TextBlock Text="Date of birth" Style="{StaticResource StatusTextBlockStyle}" Grid.Row="4" HorizontalAlignment="Left" FontWeight="Normal"/>
-        <DatePicker Grid.Row="5" BorderThickness="1" BorderBrush="{StaticResource BorderColor}"/>
+        <DatePicker Grid.Row="5" BorderThickness="1" BorderBrush="{StaticResource BorderColor}" SelectedDate="{Binding PatientDateOfBirth}"/>
         <StackPanel Orientation="Horizontal" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <Button x:Name="Ok" Style="{StaticResource MenuButtonStyle}" Content="Ok" Command="{Binding}" Margin="0,0,16,0"/>
-            <Button x:Name="Cancel" Style="{StaticResource MenuButtonStyle}" Content="Cancel" Command="{Binding}"/>
+            <Button x:Name="Ok" Style="{StaticResource MenuButtonStyle}" Content="Ok" Command="{Binding AddPatient}" Margin="0,0,16,0"/>
+            <Button x:Name="Cancel" Style="{StaticResource MenuButtonStyle}" Content="Cancel" Command="{Binding CancelAddPatient}"/>
         </StackPanel>
     </Grid>
 </Window>

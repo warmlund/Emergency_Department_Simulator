@@ -1,10 +1,8 @@
-﻿using Emergency_Department_Simulator_DTO;
-
-namespace Emergency_Department_Simulator_BLL
+﻿namespace Emergency_Department_Simulator_BLL
 {
     internal interface IPatientManager
     {
-        Task <bool> AddPatient(string name, DateOnly date);
+        Task<bool> AddPatient(string name, DateTime date);
         bool LoadPatients();
         bool SavePatients();
         int GetRegisteredPatients();

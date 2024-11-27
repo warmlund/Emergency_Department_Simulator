@@ -1,13 +1,5 @@
-﻿using System.Text;
+﻿using Emergency_Department_Simulator_BLL;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Emergency_Department_Simulator_PL
 {
@@ -18,6 +10,9 @@ namespace Emergency_Department_Simulator_PL
     {
         public MainWindow()
         {
+            PatientManager patientManager = new PatientManager();
+            ViewModel viewModel= new ViewModel(patientManager);
+            this.DataContext = viewModel;
             InitializeComponent();
         }
     }

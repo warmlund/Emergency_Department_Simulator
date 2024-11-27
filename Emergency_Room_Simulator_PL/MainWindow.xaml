@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Emergency_Department_Simulator_PL"
-        mc:Ignorable="d" Width="1024" Height="728" Style="{StaticResource WindowStyle}">
+        xmlns:local="clr-namespace:Emergency_Department_Simulator_PL" 
+        d:DataContext="{d:DesignInstance Type=local:ViewModel}"
+        mc:Ignorable="d" Width="1024" Height="728" Style="{DynamicResource WindowStyle}">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -36,32 +37,33 @@
             <TextBox x:Name="SearchBar" VerticalAlignment="Center" Style="{StaticResource TextBoxStyle}" Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,5,0"/>
             <TextBlock x:Name="SearchIcon" VerticalAlignment="Center" Style="{StaticResource ButtonTextBlockStyle}" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="{StaticResource TextColor}" FontWeight="SemiBold" Text="&#xE721;"/>
         </StackPanel>
-        <Button x:Name="AddPatientButton" Content="Add Patient" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource MenuButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="0,0,16,0"/>
+        <Button x:Name="AddPatientButton" Command="{Binding AddPatient}" Content="Add Patient" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource MenuButtonStyle}" Grid.Row="1" Grid.Column="0" Margin="0,0,16,0"/>
 
         <DataGrid x:Name="PatientDataGrid" Grid.Row="2" Grid.Column="0" Margin="16"
+                  ItemsSource="{Binding FilteredPatientList, UpdateSourceTrigger=PropertyChanged}"
                   Style="{StaticResource DatagridStyle}"
                   RowStyle="{StaticResource DatagridRowStyle}"
                   CellStyle="{StaticResource DatagridCellStyle}"
                   ColumnHeaderStyle="{StaticResource DatagridHeaderStyle}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Patient Name" Width="Auto"/>
-                <DataGridTextColumn Header="Patient Id" Width="*"/>
-                <DataGridTextColumn Header="Date of birth" Width="*"/>
-                <DataGridTextColumn Header="Status"  Width="*"/>
+                <DataGridTextColumn Header="Patient Name" Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto"/>
+                <DataGridTextColumn Header="Patient Id" Binding="{Binding PatientId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                <DataGridTextColumn Header="Date of birth" Binding="{Binding DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="16">
-            <local:PatientStatusBlock Number="{Binding}" Description="Patients Registered" Margin="0,0,16,0"/>
-            <local:PatientStatusBlock Number="{Binding}" Description="Patients Treated"  Margin="0,0,16,0"/>
-            <local:PatientStatusBlock Number="{Binding}" Description="Patients Discharged"/>
+            <local:PatientStatusBlock Number="{Binding RegisteredPatients}" Description="Patients Registered" Margin="0,0,16,0"/>
+            <local:PatientStatusBlock Number="{Binding TreatedPatients}" Description="Patients Treated"  Margin="0,0,16,0"/>
+            <local:PatientStatusBlock Number="{Binding DischargedPatients}" Description="Patients Discharged"/>
         </StackPanel>
         <DataGrid x:Name="StatusTrackerDataGrid" Grid.Row="2" Grid.Column="1" Margin="16"
+           ItemsSource="{Binding StatusBoard}"
            Style="{StaticResource DatagridStyle}"
            RowStyle="{StaticResource DatagridRowStyle}"
            CellStyle="{StaticResource DatagridCellStyle}"
            ColumnHeaderStyle="{StaticResource DatagridHeaderStyle}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Status" Width="Auto"/>
                 <DataGridTextColumn Header="Message" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>

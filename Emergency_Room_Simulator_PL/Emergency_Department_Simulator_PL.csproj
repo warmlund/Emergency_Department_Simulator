@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Emergency_Department_Simulator_BLL\Emergency_Department_Simulator_BLL.csproj" />
     <ProjectReference Include="..\Emergency_Department_Simulator_DTO\Emergency_Department_Simulator_DTO.csproj" />
   </ItemGroup>
 

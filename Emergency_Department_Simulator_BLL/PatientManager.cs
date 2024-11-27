@@ -1,6 +1,6 @@
 ﻿using Emergency_Department_Simulator_BLL.EventHandlers;
-using Emergency_Department_Simulator_DTO;
 using Emergency_Department_Simulator_DAL;
+using Emergency_Department_Simulator_DTO;
 using System.Collections.ObjectModel;
 
 namespace Emergency_Department_Simulator_BLL
@@ -21,7 +21,7 @@ namespace Emergency_Department_Simulator_BLL
             _patientData = new PatientData();
         }
 
-        public async Task<bool> AddPatient(string name, DateOnly date)
+        public async Task<bool> AddPatient(string name, DateTime date)
         {
             if (IsPatientRegistered(name, date))
                 return false;
@@ -45,7 +45,7 @@ namespace Emergency_Department_Simulator_BLL
         {
             _patientStorage = _patientData.LoadPatients();
 
-            if(_patientStorage == null)
+            if (_patientStorage == null)
                 return false;
             return true;
         }
@@ -59,8 +59,8 @@ namespace Emergency_Department_Simulator_BLL
 
             while (ids.Contains(id))
                 id++;
-            
-            return "ER"+id.ToString();
+
+            return "ER" + id.ToString();
         }
 
         public int GetRegisteredPatients() => _patientStorage.Where(p => p.Status == StatusType.Registered).Count();
@@ -68,7 +68,7 @@ namespace Emergency_Department_Simulator_BLL
         public int GetDischargedPatients() => _patientStorage.Where(p => p.Status == StatusType.Discharged).Count();
 
         public int GetTreatedPatients() => _patientStorage.Where(p => p.Status == StatusType.Treated).Count();
-        public bool IsPatientRegistered(string name, DateOnly date) => _patientStorage.Any(p => p.Name == name && p.DateOfBirth == date);
+        public bool IsPatientRegistered(string name, DateTime date) => _patientStorage.Any(p => p.Name == name && p.DateOfBirth == date);
 
         private void OnNurseUpdate(object sender, NurseUpdateEventArgs e)
         {
