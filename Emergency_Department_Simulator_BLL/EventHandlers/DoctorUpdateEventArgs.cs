@@ -2,6 +2,10 @@
 
 namespace Emergency_Department_Simulator_BLL.EventHandlers
 {
+    /// <summary>
+    /// Eventargs for doctor updates
+    /// Message update depends on the patients status type
+    /// </summary>
     public class DoctorUpdateEventArgs : PatientEventArgs
     {
         public string Message { get; }

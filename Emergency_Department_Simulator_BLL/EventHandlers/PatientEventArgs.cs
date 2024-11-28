@@ -2,7 +2,10 @@
 
 namespace Emergency_Department_Simulator_BLL.EventHandlers
 {
-    public class PatientEventArgs : EventArgs
+    /// <summary>
+    /// Abstract eventargs class that the other eventargs inherits from
+    /// </summary>
+    public abstract class PatientEventArgs : EventArgs
     {
         public Patient Patient { get; }
 

@@ -2,6 +2,9 @@
 
 namespace Emergency_Department_Simulator_DTO
 {
+    /// <summary>
+    /// patient class
+    /// </summary>
     public class Patient : INotifyPropertyChanged
     {
         private StatusType _status;
@@ -10,7 +13,7 @@ namespace Emergency_Department_Simulator_DTO
         public string Name { get; set; }
         public DateTime DateOfBirth { get; set; }
 
-        public StatusType Status
+        public StatusType Status //Statustype has an onpropertychanged so the ui can detect and update of the status
         {
             get { return _status; }
             set

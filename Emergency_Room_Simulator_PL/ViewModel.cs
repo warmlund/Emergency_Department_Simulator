@@ -44,7 +44,7 @@ namespace Emergency_Department_Simulator_PL
         public ViewModel(PatientManager patientManager)
         {
             _patientManager = patientManager;
-            _patientManager.PatientStorage.CollectionChanged += PatientStorage_CollectionChanged;
+            _patientManager.PatientStorage.CollectionChanged += PatientStorage_CollectionChanged; //subscribes to the collection changed event of the patient storage
             AddPatient = new AsyncCommand(AddNewPatient, CanAddNewPatient);
             FilteredPatientList = CollectionViewSource.GetDefaultView(Patients);
             FilteredPatientList.Filter = FilterPatients;
@@ -55,6 +55,11 @@ namespace Emergency_Department_Simulator_PL
             return true;
         }
 
+        /// <summary>
+        /// Creates an instance of the modal window and its view model
+        /// if the dialog result returns true, it calls the the add patient method in the patientmanager
+        /// </summary>
+        /// <returns></returns>
         private async Task AddNewPatient()
         {
             AddPatientViewModel addPatientViewModel = new(_patientManager);
@@ -94,8 +99,14 @@ namespace Emergency_Department_Simulator_PL
             FilteredPatientList.Refresh();
         }
 
+        /// <summary>
+        /// Method called when the patient storage changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PatientStorage_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
+            //Updates the status blocks in the ui showing patients stats
             RegisteredPatients = _patientManager.GetRegisteredPatients();
             TreatedPatients = _patientManager.GetTreatedPatients();
             DischargedPatients = _patientManager.GetDischargedPatients();
