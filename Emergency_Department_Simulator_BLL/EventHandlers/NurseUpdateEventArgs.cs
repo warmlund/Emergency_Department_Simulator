@@ -2,6 +2,9 @@
 
 namespace Emergency_Department_Simulator_BLL.EventHandlers
 {
+    /// <summary>
+    /// Eventargs for nurse updates
+    /// </summary>
     public class NurseUpdateEventArgs : PatientEventArgs
     {
         public string Message { get; }
