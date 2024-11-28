@@ -8,6 +8,7 @@
         d:DataContext="{d:DesignInstance Type=local:AddPatientViewModel}"
         mc:Ignorable="d"
         Height="300" Width="300" Background="{DynamicResource MainBackgroundColor}"
+        WindowStartupLocation="CenterScreen"
         events:EventManager.EnableCloseModalEvents="True">
 
     <Window.Resources>
@@ -40,8 +41,8 @@
         <TextBox Style="{StaticResource TextBoxStyle}" Grid.Row="2" MaxLength="25" Name="NameLimitedInput" Text="{Binding PatientName, Mode=TwoWay}" ScrollViewer.VerticalScrollBarVisibility="Disabled" TextWrapping="NoWrap" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
         
         <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right">
-            <Label Content="{Binding ElementName=NameLimitedInput, Path=Text.Length}" ContentStringFormat="{}{0} /25}" FontSize="8" Foreground="{StaticResource BorderColor}" />
-            <Label Content="/ 25" FontSize="8" Foreground="{StaticResource BorderColor}"/>
+            <Label Content="{Binding ElementName=NameLimitedInput, Path=Text.Length}" ContentStringFormat="{}{0} /25}" FontSize="8" Foreground="{StaticResource TextColor}" />
+            <Label Content="/ 25" FontSize="8" Foreground="{StaticResource TextColor}"/>
         </StackPanel>
 
         <TextBlock Text="Date of birth" Style="{StaticResource StatusTextBlockStyle}" Grid.Row="4" HorizontalAlignment="Left" FontWeight="Normal"/>

@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emergency_Department_Simula
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emergency_Department_Simulator_BLL", "Emergency_Department_Simulator_BLL\Emergency_Department_Simulator_BLL.csproj", "{709239D0-B612-480C-AD1C-B2084F3ABC83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emergency_Department_Simulator_DAL", "Emergency_Department_Simulator_DAL\Emergency_Department_Simulator_DAL.csproj", "{EA926C0B-F2BE-4CC7-A22E-BD8C0F428E17}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{709239D0-B612-480C-AD1C-B2084F3ABC83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{709239D0-B612-480C-AD1C-B2084F3ABC83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{709239D0-B612-480C-AD1C-B2084F3ABC83}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EA926C0B-F2BE-4CC7-A22E-BD8C0F428E17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA926C0B-F2BE-4CC7-A22E-BD8C0F428E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EA926C0B-F2BE-4CC7-A22E-BD8C0F428E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EA926C0B-F2BE-4CC7-A22E-BD8C0F428E17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

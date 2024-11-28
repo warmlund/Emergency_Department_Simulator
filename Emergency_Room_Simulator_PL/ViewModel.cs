@@ -19,9 +19,9 @@ namespace Emergency_Department_Simulator_PL
         #endregion
 
         #region properties
-        public int RegisteredPatients { get { return _patientManager.GetRegisteredPatients(); } set { OnPropertyChanged(nameof(RegisteredPatients)); } }
-        public int TreatedPatients { get { return _treatedPatients; } set { OnPropertyChanged(nameof(TreatedPatients)); } }
-        public int DischargedPatients { get { return _dischargedPatients; } set { OnPropertyChanged(nameof(DischargedPatients)); } }
+        public int RegisteredPatients { get { return _registeredPatients; } set { if (_registeredPatients != value) { _registeredPatients = value; OnPropertyChanged(nameof(RegisteredPatients)); } } }
+        public int TreatedPatients { get { return _treatedPatients; } set { if (_treatedPatients != value) { _treatedPatients = value; OnPropertyChanged(nameof(TreatedPatients)); } } }
+        public int DischargedPatients { get { return _dischargedPatients; } set { if (_dischargedPatients != value) { _dischargedPatients = value; OnPropertyChanged(nameof(DischargedPatients)); } } }
         public string SearchTerm { get { return _searchTerm; } set { if (_searchTerm != value) { _searchTerm = value; OnPropertyChanged(nameof(SearchTerm)); ApplyFilter(); } } } //Property search term bound to the textbox in the view
         public ICollectionView FilteredPatientList { get; } //An ICollectionView for enabling filtering of the datagridview
         public ObservableCollection<Patient> Patients
@@ -30,7 +30,7 @@ namespace Emergency_Department_Simulator_PL
             set { if (_patientManager.PatientStorage != value) { OnPropertyChanged(nameof(Patients)); } }
         }
 
-        public List<string> StatusBoard
+        public ObservableCollection<StatusMessage> StatusBoard
         {
             get { return _patientManager.StatusList; }
             set { if (_patientManager.StatusList != value) { OnPropertyChanged(nameof(StatusBoard)); } }
@@ -44,6 +44,7 @@ namespace Emergency_Department_Simulator_PL
         public ViewModel(PatientManager patientManager)
         {
             _patientManager = patientManager;
+            _patientManager.PatientStorage.CollectionChanged += PatientStorage_CollectionChanged;
             AddPatient = new AsyncCommand(AddNewPatient, CanAddNewPatient);
             FilteredPatientList = CollectionViewSource.GetDefaultView(Patients);
             FilteredPatientList.Filter = FilterPatients;
@@ -93,14 +94,11 @@ namespace Emergency_Department_Simulator_PL
             FilteredPatientList.Refresh();
         }
 
-        internal void LoadPatientData()
+        private void PatientStorage_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            _patientManager.LoadPatients();
-        }
-
-        internal void SavePatientData()
-        {
-            _patientManager.SavePatients();
+            RegisteredPatients = _patientManager.GetRegisteredPatients();
+            TreatedPatients = _patientManager.GetTreatedPatients();
+            DischargedPatients = _patientManager.GetDischargedPatients();
         }
     }
 }

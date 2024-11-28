@@ -11,11 +11,15 @@ namespace Emergency_Department_Simulator_BLL.EventHandlers
             switch (patient.Status)
             {
                 case StatusType.Diagnosed:
-                    Message = $"STATUS: {patient.PatientId} {patient.Name} is diagnosed by doctor";
+                    Message = $"DIAGNOSED: {patient.PatientId} {patient.Name} is diagnosed by doctor";
                     break;
 
                 case StatusType.Treated:
-                    Message = $"STATUS: {patient.PatientId} {patient.Name} is treated by doctor";
+                    Message = $"TREATED: {patient.PatientId} {patient.Name} is treated by doctor";
+                    break;
+
+                case StatusType.Discharged:
+                    Message = $"DISCHARGED: {patient.PatientId} {patient.Name} is discharged by doctor";
                     break;
             }
         }
