@@ -1,5 +1,6 @@
 ﻿using Emergency_Department_Simulator_BLL.EventHandlers;
 using Emergency_Department_Simulator_DTO;
+using System.Windows;
 
 namespace Emergency_Department_Simulator_BLL
 {
@@ -19,14 +20,14 @@ namespace Emergency_Department_Simulator_BLL
         {
             while (patient.Status != StatusType.Discharged)
             {
-                if (random.Next(0, 2) == 0)
+                if (random.Next(0, 3) == 0 && patient.Status!=StatusType.Treated)
                 {
-                    await Task.Run(() => OnSimulateDoctorUpdate(patient));
+                    await Task.Run(() => OnSimulateNurseUpdate(patient));
                 }
 
                 else
                 {
-                    await Task.Run(() => OnSimulateNurseUpdate(patient));
+                    await Task.Run(() => OnSimulateDoctorUpdate(patient));
                 }
             }
         }
@@ -46,21 +47,18 @@ namespace Emergency_Department_Simulator_BLL
             if (patient.Status == StatusType.Registered)
             {
                 patient.Status = StatusType.Diagnosed;
-                DoctorUpdate?.Invoke(patient, new DoctorUpdateEventArgs(patient));
+                Application.Current.Dispatcher.Invoke(() => DoctorUpdate?.Invoke(patient, new DoctorUpdateEventArgs(patient)));
             }
-
             else if (patient.Status == StatusType.Diagnosed)
             {
                 patient.Status = StatusType.Treated;
-                DoctorUpdate?.Invoke(patient, new DoctorUpdateEventArgs(patient));
+                Application.Current.Dispatcher.Invoke(() => DoctorUpdate?.Invoke(patient, new DoctorUpdateEventArgs(patient)));
             }
-
             else if (patient.Status == StatusType.Treated)
             {
                 patient.Status = StatusType.Discharged;
-                DoctorUpdate?.Invoke(patient, new DoctorUpdateEventArgs(patient));
+                Application.Current.Dispatcher.Invoke(() => DoctorUpdate?.Invoke(patient, new DoctorUpdateEventArgs(patient)));
             }
-
         }
     }
 }

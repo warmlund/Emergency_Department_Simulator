@@ -6,8 +6,7 @@
         xmlns:local="clr-namespace:Emergency_Department_Simulator_PL"
         xmlns:events="clr-namespace:Emergency_Department_Simulator_PL.Events"
         d:DataContext="{d:DesignInstance Type=local:ViewModel}"
-        mc:Ignorable="d" Width="1024" Height="728" Style="{DynamicResource WindowStyle}"
-        events:EventManager.EnableOpenCloseWindowEvents="True">
+        mc:Ignorable="d" Width="1024" Height="728" Style="{DynamicResource WindowStyle}" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -35,7 +34,7 @@
             </Border>
             <TextBlock Text="Simulator" Style="{StaticResource TitleTextblockStyle}"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="16">
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="16,0,16,0">
             <TextBox x:Name="SearchBar" VerticalAlignment="Center" Style="{StaticResource TextBoxStyle}" Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,5,0"/>
             <TextBlock x:Name="SearchIcon" VerticalAlignment="Center" Style="{StaticResource ButtonTextBlockStyle}" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="{StaticResource TextColor}" FontWeight="SemiBold" Text="&#xE721;"/>
         </StackPanel>
@@ -48,10 +47,10 @@
                   CellStyle="{StaticResource DatagridCellStyle}"
                   ColumnHeaderStyle="{StaticResource DatagridHeaderStyle}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Patient Name" Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto"/>
-                <DataGridTextColumn Header="Patient Id" Binding="{Binding PatientId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
-                <DataGridTextColumn Header="Date of birth" Binding="{Binding DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Width="*"/>
+                <DataGridTextColumn Header="Patient Name" Binding="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto"/>
+                <DataGridTextColumn Header="Patient Id" Binding="{Binding PatientId, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                <DataGridTextColumn Header="Date of birth" Binding="{Binding DateOfBirth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:yyyy-MM-dd}'}" Width="*"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="16">
@@ -60,13 +59,13 @@
             <local:PatientStatusBlock Number="{Binding DischargedPatients}" Description="Patients Discharged"/>
         </StackPanel>
         <DataGrid x:Name="StatusTrackerDataGrid" Grid.Row="2" Grid.Column="1" Margin="16"
-           ItemsSource="{Binding StatusBoard}"
+           ItemsSource="{Binding StatusBoard, UpdateSourceTrigger=PropertyChanged}"
            Style="{StaticResource DatagridStyle}"
            RowStyle="{StaticResource DatagridRowStyle}"
            CellStyle="{StaticResource DatagridCellStyle}"
            ColumnHeaderStyle="{StaticResource DatagridHeaderStyle}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Message" Width="*"/>
+                <DataGridTextColumn Header="Message" Binding="{Binding Message}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
