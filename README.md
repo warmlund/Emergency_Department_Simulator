@@ -29,7 +29,7 @@
 
 
 ## Screenshots
-![](img/project_screenshot.png)
+![](img/ER_simulator_screenshot.png)
 
 ## Contact
 Emelie Wärmlund - @emeliewarmlund@gmail.com
