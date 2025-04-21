@@ -9,11 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emergency_Department_Simula
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emergency_Department_Simulator_BLL", "Emergency_Department_Simulator_BLL\Emergency_Department_Simulator_BLL.csproj", "{709239D0-B612-480C-AD1C-B2084F3ABC83}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "img", "img", "{BDF26BD0-F82B-42F1-8D4F-9128B1CD052F}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\OneDrive\Bilder\ER_simulator_screenshot.png = ..\..\..\..\OneDrive\Bilder\ER_simulator_screenshot.png
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
