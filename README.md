@@ -1,5 +1,5 @@
 # Emergency Department Simulator
-> An application simulating an energency department, such as registering, updating status and discharging patients.  Developed during "Programming in C# III" at Malmö university
+> An application simulating an emergency department, such as registering, updating status and discharging patients.  Developed during "Programming in C# III" at Malmö university
 
 ## Table of Contents
 * [General Info](#general-information)
